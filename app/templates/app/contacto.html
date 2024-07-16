@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+
+{% load static %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<br><br>
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h2> CONTACTANOS </h2>
+                <form action="" method="post" >
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <br>
+                    <button type="reset" class="btn btn-secondary" >Limpiar</button>
+                    <button type="submit" id="btnEnviar" class="btn btn-primary">Guardar</button>
+                </form>
+                {{ mensaje }}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+{% endblock %}

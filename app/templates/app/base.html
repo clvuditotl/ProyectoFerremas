@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tecnomarket</title>
+
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    {% block css %}
+    {% endblock %}  
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+</head>
+<body>
+<header id="header">
+    <img src="{% static 'app/img/menuiconwhite.png' %}" alt="menu" class="menu" id="menu">
+    <div class="contenedor_logo">
+        <img src="{% static 'app/img/ferreteria.png' %}" alt="logo" class="logo">
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-lg">
+            <ul class="d-flex align-items-center">
+                <li>
+                    <a href="{% url 'home' %}">Inicio</a>
+                </li>
+                <li>
+                    <a href="{% url 'contacto' %}">Contácto</a>
+                </li>
+                <li>
+                    <a href="{% url 'galeria' %}">Galería</a>
+                </li>
+                {% if perms.app.add_producto %}
+                <li>
+                    <a href="{% url 'agregar_producto'%}">Agregar Productos</a>
+                </li>
+                {% endif %}
+                {% if perms.app.view_producto %}
+                <li>
+                    <a href="{% url 'listar_productos'%}">Listar Productos</a>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">Cerrar sesion</a>
+                </li>
+                <li>
+                    <a href="#">@{{ user.username }}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">Iniciar Sesion</a>
+                </li>
+                <li>
+                    <a href="{% url 'registro' %}">Registrate</a>
+                </li>
+
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="contenido">
+    {% if messages %}
+        {% for m in messages %}
+            {{m}}
+        {% endfor %}
+    {% endif %}
+
+    {% block contenido %}
+    {% endblock %}
+
+</div>
+<footer>
+    <footer>
+        
+        <div class="marcas">
+            <img src="{% static 'app/img/footer/Baukerlogo.png' %}" alt="Martillo" style="width: 30px;">
+            <img src="{% static 'app/img/footer/odisLogo.png' %}" alt="Destornilladores">
+            <img src="{% static 'app/img/footer/stanleyLogo.png' %}" alt="Llaves">
+            <img src="{% static 'app/img/footer/truperLogo.png' %}" alt="Taladros">
+            <img src="{% static 'app/img/footer/steelproLogo.png' %}" alt="Sierras">
+        </div>
+        <div class="logo_footer">
+            <img src="{% static 'app/img/ferreteria.png' %}" alt="logo">
+        </div>
+    </footer>
+</footer>
+<script src="{% static 'app/js/menu.js' %}"></script>
+
+
+{% block js %}
+{% endblock %}
+</body>
+</html>

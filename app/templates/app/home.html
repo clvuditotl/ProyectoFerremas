@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+
+
+{% load static %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxlider.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.slider').bxSlider({
+            mode: 'fade',
+            auto: true,
+            pause: 2000
+        });
+    });
+
+</script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxlider.css">
+{% endblock %}
+
+{%block contenido %}
+{% load humanize %}
+<h2>Productos</h2>
+<div class="productos">
+    {% for p in productos %}
+    <div class="producto">
+        <div class="contenedor">
+            {% if p.imagen %}
+            <img src="{{ p.imagen.url }}" alt="yoga">
+            {% endif %}
+        </div>
+
+        <div class="detalles">
+            <h5>{{ p.marca |capfirst }}</h5>
+            <h2>{{ p.nombre |title }}</h2>
+            <h3>${{ p.precio |intcomma }}</h3>
+        </div>
+    </div>
+    {% endfor %}
+
+
+</div>
+
+{%endblock%}
