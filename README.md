@@ -1,7 +1,7 @@
 ![image](https://github.com/user-attachments/assets/86aab70e-dbec-473b-b21c-113f7e6b7523)
 
 # Proyecto Ferremas
-Claudio Tobar
+#### Integrante: Claudio Tobar
 
 ### Descripción del Proyecto
 El proyecto Ferremas tiene como objetivo principal la integración de una nueva API/Webservice 
